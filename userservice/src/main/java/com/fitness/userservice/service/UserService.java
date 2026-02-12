@@ -53,5 +53,8 @@ throw new RuntimeException("Email already exists");
 
         return userResponse;
     }
-
+    public Boolean existByUserId(String userId) {
+        //log.info("Calling User Validation API for userId: {}", userId);
+        return userRepository.existsById(userId);
+    }
 }
