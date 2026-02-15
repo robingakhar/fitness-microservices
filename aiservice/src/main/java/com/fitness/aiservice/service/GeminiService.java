@@ -11,11 +11,11 @@ public class GeminiService {
 
     private final WebClient webClient;
 
-    @Value("${gemini.api.url}")
-    private String geminiApiUrl;
+    //@Value("${gemini.api.url}")
+    private String geminiApiUrl="https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 
-    @Value("${gemini.api.key}")
-    private String geminiApiKey;
+   // @Value("${gemini.api.key}")
+    private String geminiApiKey="AIzaSyCy7Pf3bZdr1Rz_ByWY65uzqS2B_I5GVgc";
 
     public GeminiService(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder.build();
@@ -31,8 +31,9 @@ public class GeminiService {
         );
 
         String response = webClient.post()
-                .uri(geminiApiUrl + geminiApiKey)
+                .uri(geminiApiUrl)
                 .header("Content-Type", "application/json")
+                .header("X-goog-api-key",geminiApiKey)
                 .bodyValue(requestBody)
                 .retrieve()
                 .bodyToMono(String.class)

@@ -22,5 +22,8 @@ public class ActivityMessageListener {
 //        log.info("Generated Recommendation: {}", aiService.generateRecommendation(activity));
         Recommendation recommendation = aiService.generateRecommendation(activity);
         recommendationRepository.save(recommendation);
+        Recommendation saved = recommendationRepository.save(recommendation);
+
+        log.info("Recommendation saved with ID: {}", saved.getId());
     }
 }
