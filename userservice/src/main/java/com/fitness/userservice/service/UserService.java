@@ -6,10 +6,12 @@ import com.fitness.userservice.dto.UserResponse;
 import com.fitness.userservice.models.User;
 import com.fitness.userservice.repo.UserRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class UserService {
 
     private final UserRepository userRepository;
@@ -32,6 +34,7 @@ throw new RuntimeException("Email already exists");
         userResponse.setPassword(savedUser.getPassword());
         userResponse.setFirstName(savedUser.getFirstName());
         userResponse.setLastName(savedUser.getLastName());
+        userResponse.setId(savedUser.getId());
         System.out.println(userResponse.toString());
 
         return userResponse;
@@ -54,7 +57,7 @@ throw new RuntimeException("Email already exists");
         return userResponse;
     }
     public Boolean existByUserId(String userId) {
-        //log.info("Calling User Validation API for userId: {}", userId);
+        log.info("Calling User Validation API for userId: {}", userId);
         return userRepository.existsById(userId);
     }
 }
